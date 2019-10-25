@@ -1,10 +1,15 @@
 version: '3'
 
 services:
-  nginx:
-    build:
-      context: ./storage/nginx
-    volumes:
-      - ./storage/nginx/logs/:/var/log/nginx
+  kcloud-storage:
+    image: kcloud/storage
+    build: 
+      dockerfile: Dockerfile
+      context: storage
+    # image: openresty/openresty:1.15.8.2-4-bionic-nosse42
+    # volumes:
+      # - ./storage/log:/usr/local/openresty/nginx/logs
+      # - ./storage/nginx/conf.d:/etc/nginx/conf.d
     ports:
-      - "80:8080"
+      - "80:80"
+    container_name: kcs
